@@ -1,0 +1,29 @@
+@charset "EUC-KR";
+
+#container {
+     text-align: center;
+}
+a {color: black; text-decoration: none;}
+a:hover {color: forestgreen}
+table{
+	margin:auto;
+	text-align:center;
+	width:90%;
+}
+tr:nth-child(even){
+     background-color: #aaa;
+}
+.tbl_login{
+	 text-align:center;
+	 width : 300px; height : 150px;
+     border: 1px solid #333;
+     border-collapse: collapse;
+     margin-bottom: 30px;
+}
+
+.tbl_list{
+     text-align: center;
+     border: 2px solid #333;
+     margin-bottom: 30px;
+}
+.error{color:red;}

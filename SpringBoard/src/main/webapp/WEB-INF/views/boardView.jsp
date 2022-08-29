@@ -24,11 +24,11 @@
 					</tr>
 					<tr>
 						<td>작성자</td>
-						<td><input type="text" name="writer" value="${ board.writer }"></td>
+						<td align="left"><input type="text" name="writer" value="${ board.writer }"></td>
 					</tr>
 					<tr>
 						<td>내용</td>
-						<td><textarea name="content" cols="50" rows="10">${ board.content }</textarea></td>
+						<td align="left"><textarea name="content" cols="50" rows="10">${ board.content }</textarea></td>
 					</tr>
 					<tr>
 						<td colspan="2" align="center">

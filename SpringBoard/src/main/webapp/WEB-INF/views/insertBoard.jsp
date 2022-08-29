@@ -6,6 +6,29 @@
 <meta charset="UTF-8">
 <title>글 작성</title>
 <link rel="stylesheet" href="/resources/CSS/style.css">
+<script>
+	function checkForm(){
+		let form = document.write
+		
+		if(form.title.value == ""){
+			alert("제목을 입력해주세요");
+			form.title.focus();
+			return false;
+		}
+		
+		if(form.writer.value == "") {
+			alert("작성자를 입력해주세요");
+			form.writer.focus();
+			return false;
+		}
+		
+		if(form.content.value == "") {
+			alert("내용을 입력해주세요");
+			form.content.focus();
+			return false;
+		}
+	}
+</script>
 </head>
 <body>
 	<div id="container">
@@ -15,7 +38,7 @@
 				<a href="/logout">Log-out</a>
 			</h3>
 			<hr>
-			<form action="/insertBoard" method="post">
+			<form action="/insertBoard" method="post" name="write" onsubmit="return checkForm()">
 				<table class="tbl_reg">
 					<tr>
 						<td width="100">제목</td>

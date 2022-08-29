@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.runner.RunWith;
 import org.springframework.stereotype.Repository;
 
 import com.cloud.persistence.JDBCUtil;
@@ -135,26 +136,23 @@ public class BoardDAO {
 	//조회수
 	public void updateCount(int bno) {
 		try {
-			conn = JDBCUtil.getConnection();
-			String sql = "SELECT cnt FROM board WHERE bno =?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, bno);
-			rs = pstmt.executeQuery();
-			int cnt = 0;
-			if(rs.next()) {
-				cnt = rs.getInt("cnt") + 1;
-			}
+			/*
+			 * conn = JDBCUtil.getConnection(); String sql =
+			 * "SELECT cnt FROM board WHERE bno =?"; pstmt = conn.prepareStatement(sql);
+			 * pstmt.setInt(1, bno); rs = pstmt.executeQuery(); int cnt = 0; if(rs.next()) {
+			 * cnt = rs.getInt("cnt") + 1; }
+			 */
 			
 			//조회수 update 처리
-			sql = "UPDATE board SET cnt = ? WHERE bno =?";
+			conn = JDBCUtil.getConnection();
+			String sql = "UPDATE board SET cnt = cnt+1 WHERE bno =?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, cnt);
-			pstmt.setInt(2, bno);
+			pstmt.setInt(1, bno);
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			JDBCUtil.close(conn, pstmt, rs);
+			JDBCUtil.close(conn, pstmt);
 		}
 	}
 	

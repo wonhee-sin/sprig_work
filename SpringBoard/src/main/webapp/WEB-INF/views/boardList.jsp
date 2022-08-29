@@ -14,12 +14,16 @@
 		<section id="list">
 			<h2>글 목록</h2>
 			<h3>
+				<c:out value="${ sessionId }" />님 환영합니다...&nbsp;&nbsp;&nbsp;
+				<a href="/logout" style="color:green">Logout</a>
+			</h3>
+			<h3>
 				<a href="/logout">Log-out</a>
 			</h3>
 			<table class="tbl_list">
 				<tr>
 					<th>번호</th>
-					<th>제목</th>
+					<th width="50%">제목</th>
 					<th>작성자</th>
 					<th>등록일</th>
 					<th>조회수</th>
@@ -29,7 +33,7 @@
 					<td>${ board.bno }</td>
 					<td><a href="/boardView?bno=${ board.bno }">${ board.title }</a></td>
 					<td>${ board.writer }</td>
-					<td><fmt:formatDate value="${ board.regDate }" pattern="yyyy-MM-dd hh:mm:ss" /></td>
+					<td><fmt:formatDate value="${ board.regDate }" pattern="yyyy-MM-dd" /></td>
 					<td>${ board.cnt }</td>
 				</tr>
 				</c:forEach>
