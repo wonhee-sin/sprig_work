@@ -14,8 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.cloud.domain.BoardVO;
 import com.cloud.service.BoardService;
 
+import lombok.extern.log4j.Log4j;
+
 @RequestMapping("/board/*")
 @Controller
+@Log4j
 public class BoardController {
 	
 	@Autowired
@@ -32,6 +35,7 @@ public class BoardController {
 	
 	@GetMapping("/insertBoard")
 	public String insertBoard() {
+		log.info("게시글 작성");
 		return "/board/insertBoard";
 	}
 	
@@ -46,6 +50,7 @@ public class BoardController {
 		service.updateCount(bno);
 		BoardVO board = service.getBoard(bno);
 		model.addAttribute("board", board);
+		log.info("게시글 작성");
 		return "/board/boardView";
 	}
 	
