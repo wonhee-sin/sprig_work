@@ -1,6 +1,6 @@
 @charset "EUC-KR";
-*{box-sizing:border-box; outline:none;}
-body{background:pink;}
+*{box-sizing:border-box; outline:none; color:gold;}
+body{background:black;}
 
 #container {
      text-align: center;
@@ -10,24 +10,31 @@ table{
 	text-align:center;
 	width:90%;
 }
-tr:nth-child(even){
-     background-color: black;
-     color:pink;
-}
-tr:nth-child(odd) a{
+tr:nth-child(odd){
+     background-color: gold;
      color:black;
+}
+tr:nth-child(odd) td,
+tr:nth-child(odd) th {
+     color:black;
+}
+tr:nth-child(even) a{
+     color:gold;
+}
+tr:nth-child(even) a:hover{
+     color:white;
 }
 .tbl_login, .tbl_reg{
 	 text-align:center;
 	 width : 300px; height : 150px;
-     border: 1px solid #333;
+     border: 1px solid gold;
      border-collapse: collapse;
      margin-bottom: 30px;
 }
 
 .tbl_list{
      text-align: center;
-     border: 2px solid #333;
+     border: 2px solid gold;
      margin-bottom: 30px;
 }
 .error{color:red;}
@@ -35,12 +42,14 @@ tr:nth-child(odd) a{
 input[type="button"],
 input[type="submit"],
 input[type="reset"] {
-	background:black;
-	color:pink;
+	background:gold;
+	color:black;
+	padding : 10px;
 }
 input[type="button"]:hover,
 input[type="submit"]:hover,
 input[type="reset"]:hover{
 	outline:1px solid white;
 	color:white;
+	
 }

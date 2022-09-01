@@ -7,9 +7,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-nav{background :black; height: 50px; position:relative;}
+nav{background :gold; height: 50px; position:relative;}
 h4{position:absolute; margin:0; top:14.5px; left:calc(50% - 133px);}
-a{color: pink; text-decoration: none;}
+a{color: black; text-decoration: none;}
 a:hover{color:white}
 a:active{outline: 5px solid skyblue; color: skyblue;}
 
