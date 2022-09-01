@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,12 +32,10 @@
 </script>
 </head>
 <body>
+	<jsp:include page="../menu.jsp" />
 	<div id="container">
 		<section id="register">
 			<h2>글 쓰기</h2>
-			<h3>
-				<a href="/logout">Log-out</a>
-			</h3>
 			<hr>
 			<form action="/board/insertBoard" method="post" name="write" onsubmit="return checkForm()">
 				<table class="tbl_reg">
@@ -46,7 +45,8 @@
 					</tr>
 					<tr>
 						<td>작성자</td>
-						<td align="left"><input type="text" name="writer"></td>
+						<td align="left"><input type="text" name="writer"
+							value='<security:authentication property="principal.username"/>' readonly="readonly"></td>
 					</tr>
 					<tr>
 						<td>내용</td>
@@ -59,6 +59,7 @@
 						</td>
 					</tr>
 				</table>
+				<input type="hidden" name="${ _csrf.parameterName }" value="${ _csrf.token }">
 			</form>
 		</section>
 	</div>

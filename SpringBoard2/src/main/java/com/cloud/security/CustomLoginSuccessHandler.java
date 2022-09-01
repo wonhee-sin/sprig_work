@@ -38,7 +38,7 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 			response.sendRedirect("/sample/member");
 			return;
 		}
-		response.sendRedirect("/");		//index.jsp로 이동
+		response.sendRedirect("/sample/all");		//index.jsp로 이동
 	}
 
 	

@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<jsp:include page="./menu.jsp" />
 	<h1>Access Denied Page</h1>
 	
 	<h2><c:out value="${msg}" /></h2>

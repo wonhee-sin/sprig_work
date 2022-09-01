@@ -8,6 +8,7 @@
 <title>Logout Page</title>
 </head>
 <body>
+	<jsp:include page="./menu.jsp" />
 	<h2><c:out value="${ error }" /></h2>
 	<h2><c:out value="${ logout }" /></h2>
 	

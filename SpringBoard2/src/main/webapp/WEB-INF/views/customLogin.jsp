@@ -26,6 +26,7 @@
 </script>
 </head>
 <body>
+	<jsp:include page="./menu.jsp" />
 	<div id="container">
 		<section id="login">
 			<h2>로그인</h2>

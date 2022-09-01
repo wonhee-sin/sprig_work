@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,15 +11,12 @@
 <link rel="stylesheet" href="/resources/CSS/style.css">
 </head>
 <body>
+	<jsp:include page="../menu.jsp" />
 	<div id="container">
 		<section id="list">
 			<h2>글 목록</h2>
 			<h3>
-				<c:out value="${ sessionId }" />님 환영합니다...&nbsp;&nbsp;&nbsp;
-				<a href="/logout" style="color:green">Logout</a>
-			</h3>
-			<h3>
-				<a href="/logout">Log-out</a>
+				<security:authentication property="principal.username"/> 님 환영합니다...&nbsp;&nbsp;&nbsp;
 			</h3>
 			<table class="tbl_list">
 				<tr>

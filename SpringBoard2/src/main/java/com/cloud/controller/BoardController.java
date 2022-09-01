@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.cloud.domain.BoardVO;
 import com.cloud.service.BoardService;
 
+import lombok.Getter;
 import lombok.extern.log4j.Log4j;
 
 @RequestMapping("/board/*")
@@ -25,6 +27,7 @@ public class BoardController {
 	private BoardService service;
 	
 	@GetMapping("/boardList")
+	@PreAuthorize("isAuthenticated()")
 	public String getBoardList(Model model, HttpSession session) {
 		List<BoardVO> boardList = service.getBoardList();
 		String id = (String)session.getAttribute("sessionId");
@@ -34,12 +37,14 @@ public class BoardController {
 	}
 	
 	@GetMapping("/insertBoard")
+	@PreAuthorize("isAuthenticated()")
 	public String insertBoard() {
 		log.info("게시글 작성");
 		return "/board/insertBoard";
 	}
 	
 	@PostMapping("/insertBoard")
+	@PreAuthorize("isAuthenticated()")
 	public String insertBoard(BoardVO vo) {
 		service.insert(vo);
 		return "redirect:/board/boardList";
@@ -50,7 +55,6 @@ public class BoardController {
 		service.updateCount(bno);
 		BoardVO board = service.getBoard(bno);
 		model.addAttribute("board", board);
-		log.info("게시글 작성");
 		return "/board/boardView";
 	}
 	
