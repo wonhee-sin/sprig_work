@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <title>글 작성</title>
 <link rel="stylesheet" href="/resources/CSS/style.css">
+<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
 </head>
 <body>
 	<jsp:include page="../menu.jsp" />
@@ -80,6 +81,7 @@
 	
 		$(".listBtn").click(function(e){
 			e.preventDefault();  //기본 동작 막아줌
+			
 			actionForm.submit();
 		})
 		

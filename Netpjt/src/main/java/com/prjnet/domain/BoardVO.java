@@ -18,5 +18,7 @@ public class BoardVO implements Serializable {
 	private String image;
 	private String id;
 	
+	private String keyword;
+	
 	private MultipartFile uploadFile;
 }

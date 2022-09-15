@@ -11,6 +11,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
@@ -70,13 +71,12 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/boardView")
-	public String getBoard(int bno, Criteria cri, Model model) {
+	public String getBoard(int bno, @ModelAttribute("cri") Criteria cri, Model model) {
 		service.updateCount(bno);
 		BoardVO board = service.getBoard(bno);
 		
 		
 		model.addAttribute("board", board);
-		model.addAttribute("cri",cri);
 		return "/board/boardView";
 	}
 	
@@ -85,6 +85,8 @@ public class BoardController {
 		service.delete(vo);
 		rttr.addAttribute("pageNum", cri.getPageNum());
 		rttr.addAttribute("amount", cri.getAmount());
+		rttr.addAttribute("type", cri.getType());
+		rttr.addAttribute("keyword", cri.getKeyword());
 		
 		return "redirect:/board/boardList";
 	}
@@ -94,6 +96,8 @@ public class BoardController {
 		service.update(vo);
 		rttr.addAttribute("pageNum", cri.getPageNum());
 		rttr.addAttribute("amount", cri.getAmount());
+		rttr.addAttribute("type", cri.getType());
+		rttr.addAttribute("keyword", cri.getKeyword());
 		
 		return "redirect:/board/boardList";
 	}

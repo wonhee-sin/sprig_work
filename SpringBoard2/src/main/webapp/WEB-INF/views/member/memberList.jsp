@@ -23,6 +23,7 @@
 						<th>아이디</th>
 						<th>이름</th>
 						<th>가입일</th>
+						<th>권한</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -34,6 +35,7 @@
 						</td>
 						<td><c:out value="${ member.username }" /></td>
 						<td><fmt:formatDate value="${ member.regDate }" pattern="yyyy/mm/dd" /></td>
+						<td><c:out value="${ member.auth }" /></td>
 					</tr>
 					</c:forEach>
 				</tbody>

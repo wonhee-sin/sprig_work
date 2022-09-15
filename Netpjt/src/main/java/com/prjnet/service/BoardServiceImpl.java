@@ -42,8 +42,9 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BoardVO> searchedBoardList(String category) {
-		return mapper.searchedBoardList(category);
+	public List<BoardVO> searchedBoardList(String keyword) {
+		return mapper.searchedBoardList(keyword);
 	}
+
 
 }

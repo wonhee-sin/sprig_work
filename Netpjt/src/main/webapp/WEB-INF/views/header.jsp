@@ -7,8 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 <style type="text/css">
-img {margin-left:30px;}
 .header{
 	position :absolute;
 	width:100%;
@@ -32,6 +32,9 @@ img {margin-left:30px;}
 	float:right;
 	margin-right: 100px;
 	top:-2px;
+}
+.logoimg{
+	margin-left:30px;
 }
 #lang_sel{
 	color: #fff; 
@@ -65,12 +68,13 @@ a{
 }
 
 .dropdown {
-	width:30px;
+	width:32px;
 	float:right;
-	margin-right:30px;
 }
 .my-info{
 	float:right;
+	width:32px;
+	height:32px;
 	margin-right : 30px;
 	cursor: pointer;
 }
@@ -96,6 +100,60 @@ a{
 .dropdown:hover .dropdown-submenu{
 	display : block;
 }
+
+.search{
+	float : right;
+	margin-right: 100px;
+	background-color : #fff;
+	width:50px;
+	height:50px;
+	border-radius: 50px 50px 50px 50px;
+	box-shadow: 0 0 10px rgba(0,0,0, 0.15);
+	overflow:hidden;
+	position:relative;
+	top: -10px;
+	transition: 0.5s;
+}
+.search.active {
+	width: 400px;
+}
+.icon {
+	width:50px;
+	height:50px;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 50px;
+	font-size: 28px;
+	cursor:pointer;
+	background-color : #fff;
+	position:absolute;
+	top:0;
+	left:0;
+}
+.input-frame {
+	position:absolute;
+	top: 12px;
+	left: 60px;
+	width : 300px;
+}
+.input-frame input[type=text] {
+	width: 100%;
+	outline : none;
+	border: none;
+	font-size : 18px;
+}
+.input-frame input[type=text]::placeholder {
+	transition:0.3s;
+}
+.input-frame input[type=text]:focus::placeholder {
+	opacity: 0;
+}
+.clear {
+	position:absolute;
+	right:20px;
+	top:13px;
+	cursor:pointer;
+}
 </style>
 </head>
 <body>
@@ -115,7 +173,6 @@ a{
 					</div>
 				</div>
 			</c:if>
-			
  			<c:if test="${ pinfo.authorities eq '[ADMIN]'}">
 				<div class="dropdown">
 					<a class="my-info"><img src="../resources/image/icon.png"></a>
@@ -127,7 +184,7 @@ a{
 			</c:if>
 		</security:authorize>
 		
-		<img width="106rem" alt="넷플릭스 로고" src="../resources/image/Logonetflix.png">
+		<img class="logoimg" width="106rem" alt="넷플릭스 로고" src="../resources/image/Logonetflix.png">
 		<div id="lang">
 			<i id="iconposition1" class="xi-globus"></i>
 			<select id="lang_sel" tabindex="0">	
@@ -136,6 +193,32 @@ a{
 			</select>
 			<i id="iconposition2" class="xi-caret-down-min"></i>
 		</div>
+		<security:authorize access="isAuthenticated()" >
+		<div class="search">
+			<span class="clear"><i class="xi-close-thin"></i></span>
+			<div class="icon"><i class="xi-search"></i></div>
+			<div class="input-frame">
+			<form action="/board/searchResult">
+				<input id="searchInput" type="text" name="keyword" placeholder="Type Here...">
+			</form>
+			</div>
+		</div>
+		</security:authorize>
 	</div>
+	
+	<script type="text/javascript">
+		var icon = document.querySelector('.icon'),
+			search = document.querySelector('.search'),
+			clear = document.querySelector('.clear'),
+			searchInput = document.getElementById('searchInput');
+		
+		icon.onclick = function(){
+			search.classList.toggle('active')
+		}
+		clear.onclick = function(){
+			searchInput.value = ''
+		}
+	</script>
+	
 </body>
 </html>

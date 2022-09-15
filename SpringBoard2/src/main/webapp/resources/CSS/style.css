@@ -67,5 +67,20 @@ textarea {
 	outline:1px solid gold;
 }
 
+#searchForm select {
+	background : black;
+}
+
+#searchForm button {
+	background : black;
+	padding : 5px;
+	border : 1px solid gold;
+}
+
+.page-link {
+	list-style : none;
+	display: inline-block;
+}
+
 .pageNum-a a {color:gold;}
 .pageNum-a {color:gold;}

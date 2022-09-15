@@ -30,10 +30,6 @@
 <security:authorize access="isAuthenticated()">
 <jsp:include page="../header.jsp" />
 	<div class="container">
-		<section class="billboard">
-			<img class="billboard_title" alt="title" src="../resources/image/text.webp">
-			<p>이곳은 설명하는 텍스트 박스입니다.</p>
-		</section>
 		<section class="contents">
 		<c:forEach var="board" items="${ boardList }">
 			<a class="modal-notice" onclick="sendBno(${board.bno})"><img src="../resources/upload/${ board.image }"></a>

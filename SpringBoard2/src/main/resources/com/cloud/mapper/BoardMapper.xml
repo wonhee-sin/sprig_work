@@ -37,6 +37,23 @@
 		WHERE bno = #{bno}
 	</update>
 	
+	<!-- 검색 모듈 -->
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND">
+			<foreach collection="typeArr" item="type" separator="OR">
+				<if test="type=='T'.toString()">
+					title like '%'||#{keyword}||'%' 
+				</if>
+				<if test="type=='C'.toString()">
+					content like '%'||#{keyword}||'%' 
+				</if>
+				<if test="type=='W'.toString()">
+					writer like '%'||#{keyword}||'%' 
+				</if>
+			</foreach>
+		</trim>
+	</sql>
+	
 	<!-- 목록 보기(페이지 처리) -->
 	<select id="getListWithPage" resultType="com.cloud.domain.BoardVO">
 	<![CDATA[
@@ -45,7 +62,11 @@
 		SELECT /*+ INDEX_DESC(tbl_board pk_board) */
 			ROWNUM rn, bno, title, content, writer, regdate, updatedate, cnt
 		FROM tbl_board
-		WHERE ROWNUM <= (#{pageNum} * #{amount})
+		WHERE
+	]]>
+		<include refid="criteria" />
+	<![CDATA[
+		ROWNUM <= (#{pageNum} * #{amount})
 	)
 	WHERE rn > (#{pageNum} - 1) * #{amount}
 	]]>
@@ -53,6 +74,33 @@
 	
 	<!-- 게시글 총 개수 -->
 	<select id="getTotalCount" resultType="int">
-		SELECT COUNT(*) FROM tbl_board WHERE bno > 0
+		SELECT COUNT(*) FROM tbl_board WHERE
+		<include refid="criteria" />
+		bno > 0
 	</select>
+	
+ 	<!-- 게시글 검색(테스트) -->
+<!--	<select id="searchTest" resultType="com.cloud.domain.BoardVO">
+	<![CDATA[
+		SELECT * FROM tbl_board
+		WHERE
+	]]>
+	<trim suffix="AND">
+		<foreach collection="map" index="key" item="val"
+				 separator="OR" open="(" close=")">
+			<if test="key=='T'.toString()">
+				title like #{val}
+			</if>
+			<if test="key=='C'.toString()">
+				content like #{val}
+			</if>
+			<if test="key=='W'.toString()">
+				writer like #{val}
+			</if>
+		</foreach>
+	</trim>
+	<![CDATA[
+		ROWNUM < 10
+	]]>
+	</select> -->
 </mapper>

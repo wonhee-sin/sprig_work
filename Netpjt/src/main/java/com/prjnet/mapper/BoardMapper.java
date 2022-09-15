@@ -15,7 +15,7 @@ public interface BoardMapper {
 	
 	public void updatge(BoardVO vo);	//콘텐츠 수정
 	
-	public List<BoardVO> searchedBoardList(String category);		//검색된 콘텐츠
+	public List<BoardVO> searchedBoardList(String keyword);		//검색된 콘텐츠
 	
 	
 }

@@ -2,7 +2,6 @@ package com.prjnet.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -20,7 +19,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.prjnet.domain.BoardVO;
 import com.prjnet.service.BoardService;
 
-import lombok.extern.java.Log;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
@@ -74,5 +72,17 @@ public class BoardController {
 	public String deleteBoard(BoardVO vo) {
 		service.delete(vo);
 		return "redirect:/board/main";
+	}
+	
+	//검색 결과 페이지
+	@RequestMapping("/searchResult")
+	@PreAuthorize("isAuthenticated()")
+	public String getSearchResult(Model model, String keyword) {	//목록 보기
+		List<BoardVO> boardList = service.searchedBoardList(keyword);
+		
+		log.info("");
+		
+		model.addAttribute("boardList", boardList);
+		return "/board/searchResult";
 	}
 }

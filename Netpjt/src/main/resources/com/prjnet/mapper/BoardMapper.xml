@@ -17,12 +17,6 @@
 			) WHERE <![CDATA[rownum <= 20]]>
 	</select>
 	
-	<!-- 콘텐츠 검색 -->
-	<select id="searchedBoardList">
-		SELECT * FROM board
-		 WHERE category = #{category}
-	</select>
-	
 	<!-- 콘텐츠 상세 보기 -->
 	<select id="getBoard" resultType="com.prjnet.domain.BoardVO">
 		SELECT * FROM board WHERE bno = #{bno}
@@ -39,6 +33,13 @@
 		SET title = #{title}, content = #{content}
 		WHERE bno = #{bno}
 	</update>
-
-
+	
+	<!-- 콘텐츠 검색 -->
+	<select id="searchedBoardList" resultType="com.prjnet.domain.BoardVO">
+			SELECT * FROM board
+			WHERE content LIKE '%'||#{keyword}||'%'
+			OR title LIKE '%'||#{keyword}||'%'
+			OR category LIKE '%'||#{keyword}||'%'
+			ORDER BY DBMS_RANDOM.RANDOM
+	</select>
 </mapper>

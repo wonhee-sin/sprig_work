@@ -45,7 +45,9 @@ a {text-decoration: none;}
 		bottom: 5%;
 		left:5%;
 	}
-	
+	.contents{
+		margin: auto;
+	}
 	/* modal */
 	.modal {
 		position: fixed;

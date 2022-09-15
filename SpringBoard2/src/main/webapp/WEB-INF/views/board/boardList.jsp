@@ -19,6 +19,20 @@
 			<h3>
 				<security:authentication property="principal.username"/> 님 환영합니다...&nbsp;&nbsp;&nbsp;
 			</h3>
+			<form action="/board/boardList" method="get" id="searchForm">
+				<select name="type">
+					<option value="T">제목</option>
+					<option value="C">내용</option>
+					<option value="W">작성자</option>
+					<option value="TC">제목 or 내용</option>
+					<option value="TW">제목 or 작성자</option>
+					<option value="TWC">제목 or 내용 or 작성자</option>
+				</select>
+				<input type="text" name="keyword" value="${pageMaker.cri.keyword }" class="keyword">
+				<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
+				<input type="hidden" name="amount" value="${pageMaker.cri.amount }">
+				<button>Search</button>
+			</form>
 			<table class="tbl_list">
 				<tr>
 					<th>번호</th>
@@ -43,19 +57,34 @@
 			<!-- 페이지 번호 -->
 			<div class="pageNum-a">
 				<ul>
-				<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" 
+					<c:if test="${pageMaker.prev }">
+					<li class="page-link"><a href="${pageMaker.startPage - 1 }">이전</a></li>
+					</c:if>
+					<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" 
 				           var="num">
-				    <!-- 현재 페이지 -->
-					<li class="page-link">
-						<a href="${num}"><c:out value="${num}" /></a>
-					</li>
-				</c:forEach>
+					    <!-- 현재 페이지 -->
+					    <c:if test="${pageMaker.cri.pageNum eq num }">
+					    	<li class="page-link"><a href="${num }">
+					    	<b><c:out value="${num}" /></b></a>
+					    	</li>
+					    </c:if>
+					    <c:if test="${pageMaker.cri.pageNum ne num }">
+					    	<li class="page-link">
+					    	<a href="${num }"><c:out value="${num}" /></a>
+					    	</li>
+					    </c:if>
+					</c:forEach>
+					<c:if test="${pageMaker.next }">
+					<li class="page-link"><a href="${pageMaker.startPage + 1 }">이전</a></li>
+				</c:if>
 				</ul>
 			</div>
 			<!-- 페이지 처리 전송 폼 -->
 			<form action="/board/boardList" method="get" id="actionForm">
-				<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
-				<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+				<input type="text" name="pageNum" value="${pageMaker.cri.pageNum}">
+				<input type="text" name="amount" value="${pageMaker.cri.amount}">
+				<input type="text" name="amount" value="${pageMaker.cri.type}">
+				<input type="text" name="amount" value="${pageMaker.cri.keyword}">
 			</form>
 			<!-- 글쓰기 버튼 -->
 			<div class="btn_box">
@@ -86,6 +115,16 @@
 			actionForm.append("<input type='hidden' name='bno' value='" + targetBno + "'>");
 			actionForm.attr("action", "/board/boardView");
 			actionForm.submit();
+		});
+		
+		//검색 폼 처리
+		let searchForm = $("#searchForm");
+		$("#searchForm button").on("click", function(e){
+			e.preventDefault();
+			console.log("click");
+			
+			searchForm.find("input[name='pageNum']").val(1);	//1페이지부터 검색
+			searchForm.submit();
 		});
 	});
 </script>
