@@ -1,6 +1,9 @@
 package com.cloud.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -19,11 +22,12 @@ public class MemberServiceImpl implements MemberService {
 	private MemberAuthMapper authMapper;
 	
 	@Autowired
-	private PasswordEncoder pwencoder;
+	private BCryptPasswordEncoder pwencoder;
 	
 	@Override
 	public void signup(MemberVO member) {
 		
+		//비밀번호 암호화
 		String encPw = pwencoder.encode(member.getUserpw());
 		member.setUserpw(encPw);
 		
@@ -35,6 +39,35 @@ public class MemberServiceImpl implements MemberService {
 		auth.setAuth("ROLE_USER");
 		authMapper.insertMemberAuth(auth);
 		
+	}
+
+	@Override
+	public List<MemberVO> getMemberList() {
+		return mapper.getMemberList();
+	}
+
+	@Override
+	public MemberVO read(String userid) {
+		return mapper.read(userid);
+	}
+
+	@Override
+	public void delete(MemberVO member) {
+		mapper.deleteMember(member);
+	}
+
+	@Override
+	public void update(MemberVO member) {
+		//비밀번호 암호화
+		String encPw = pwencoder.encode(member.getUserpw());
+		member.setUserpw(encPw);
+		
+		mapper.updateMember(member);
+	}
+
+	@Override
+	public int checkID(String userid) {
+		return mapper.checkID(userid);
 	}
 
 }

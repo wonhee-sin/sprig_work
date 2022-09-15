@@ -1,4 +1,4 @@
-package com.cloud.security;
+/*package com.cloud.security;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,3 +30,4 @@ public class MemberMapperTests {
 		vo.getAuthList().forEach(authVO -> log.info(authVO));
 	}
 }
+*/

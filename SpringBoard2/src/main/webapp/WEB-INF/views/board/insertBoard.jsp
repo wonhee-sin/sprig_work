@@ -37,7 +37,8 @@
 		<section id="register">
 			<h2>글 쓰기</h2>
 			<hr>
-			<form action="/board/insertBoard" method="post" name="write" onsubmit="return checkForm()">
+			<form action="/board/insertBoard" method="post" name="write" onsubmit="return checkForm()"
+					encType="multipart/form-data">
 				<table class="tbl_reg">
 					<tr>
 						<td width="100">제목</td>
@@ -51,6 +52,10 @@
 					<tr>
 						<td>내용</td>
 						<td align="left"><textarea name="content" cols="50" rows="10"></textarea></td>
+					</tr>
+					<tr>
+						<td>업로드</td>
+						<td align="left"><input type="file" name="uploadFile"></td>
 					</tr>
 					<tr>
 						<td colspan="2" align="center">

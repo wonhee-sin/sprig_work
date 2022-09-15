@@ -1,12 +1,7 @@
-package com.cloud.security;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+/*package com.cloud.security;
 
 import javax.sql.DataSource;
 
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -27,7 +22,7 @@ public class MemberTests {
 	private PasswordEncoder pwencoder;
 	
 	//회원 가입 - 100명
-	/*
+	
 	 * @Test public void testInsertMember() { String sql =
 	 * "INSERT INTO tbl_member(userid, userpw, username) VALUES(?, ?, ?)";
 	 * 
@@ -44,10 +39,10 @@ public class MemberTests {
 	 * finally { if(pstmt != null) { try { pstmt.close(); } catch (SQLException e) {
 	 * e.printStackTrace(); } } if(conn != null) { try { conn.close(); } catch
 	 * (SQLException e) { e.printStackTrace(); } } } } }
-	 */
+	 
 	
 	//회원 권한 입력
-	/*@Test
+	@Test
 	public void testInsertAuth() {
 		String sql = 
 				"INSERT INTO tbl_member_auth(userid, auth) VALUES(?, ?)";
@@ -90,9 +85,10 @@ public class MemberTests {
 				}
 			}	
 	}
-	*/
+	
 	
 	
 		
 	
 }
+*/

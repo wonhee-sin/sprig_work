@@ -11,10 +11,12 @@
 	<jsp:include page="./menu.jsp" />
 	<div id="container">
 		<section id="main">
-			<h2>메인 페이지입니다.</h2>
-			<hr>
-			<img alt="행글라이더" src="/resources/images/activity.jpg">
-
+			<div class="title">
+				<h2>Welcome to our community...</h2>
+			</div>
+			<div>
+				<img alt="main" src="/resources/images/mainimg.png">
+			</div>
 		</section>
 	</div>
 </body>

@@ -36,4 +36,23 @@
 		SET cnt = cnt + 1
 		WHERE bno = #{bno}
 	</update>
+	
+	<!-- 목록 보기(페이지 처리) -->
+	<select id="getListWithPage" resultType="com.cloud.domain.BoardVO">
+	<![CDATA[
+	SELECT * FROM
+	(
+		SELECT /*+ INDEX_DESC(tbl_board pk_board) */
+			ROWNUM rn, bno, title, content, writer, regdate, updatedate, cnt
+		FROM tbl_board
+		WHERE ROWNUM <= (#{pageNum} * #{amount})
+	)
+	WHERE rn > (#{pageNum} - 1) * #{amount}
+	]]>
+	</select>
+	
+	<!-- 게시글 총 개수 -->
+	<select id="getTotalCount" resultType="int">
+		SELECT COUNT(*) FROM tbl_board WHERE bno > 0
+	</select>
 </mapper>

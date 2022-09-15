@@ -16,7 +16,7 @@ public class CommonController {
 	@GetMapping("/accessError")
 	public void accessDenied(Authentication auth, Model model) {
 		log.info("access Denied : " + auth);
-		model.addAttribute("msg", "Access Denied");
+		model.addAttribute("msg", "해당 메뉴는 관리자에게만 제공됩니다.");
 	}
 	
 	@GetMapping("/customLogin")

@@ -31,6 +31,26 @@
 		INSERT INTO tbl_member(userid, userpw, username, enabled)
 		VALUES (#{userid}, #{userpw}, #{username}, '1')
 	</insert>
-
+	
+	<select id="getMemberList" resultMap="memberMap">
+		SELECT mem.userid, mem.username, mem.regdate, auth.auth
+		FROM tbl_member mem, tbl_member_auth auth
+		WHERE mem.userid = auth.userid
+	</select>
+	
+	<delete id="deleteMember">
+		DELETE FROM tbl_member WHERE userid = #{userid}
+	</delete>
+	
+	<update id="updateMember">
+		UPDATE tbl_member
+		SET userpw = #{userpw}, username = #{username}
+		WHERE userid =#{userid}
+	</update>
+	
+	<select id="checkID" resultType="int">
+		SELECT COUNT(*) FROM tbl_member
+		WHERE userid = #{userid}
+	</select>
 
 </mapper>

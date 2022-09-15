@@ -6,11 +6,23 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="/resources/CSS/style.css?13253">
+<style>
+.errer_msg {
+	height:300px;
+	width:30%;
+	background:gold;
+	color:black;
+}
+</style>
 </head>
 <body>
 	<jsp:include page="./menu.jsp" />
-	<h1>Access Denied Page</h1>
+	<div class="errer_msg" >
+		<h1 style="text-align:center; color:black;">Access Denied Page</h1>
+	</div>
 	
-	<h2><c:out value="${msg}" /></h2>
+	
+	<h2 style="text-align:center"><c:out value="${msg}" /></h2>
 </body>
 </html>
